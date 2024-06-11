@@ -12,9 +12,14 @@ export namespace Components {
         "transparent": boolean;
     }
     interface NavbarItem {
+        "active": boolean;
         "href": string;
         "text": string;
     }
+}
+export interface NavbarItemCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLNavbarItemElement;
 }
 declare global {
     interface HTMLNavBarElement extends Components.NavBar, HTMLStencilElement {
@@ -23,7 +28,18 @@ declare global {
         prototype: HTMLNavBarElement;
         new (): HTMLNavBarElement;
     };
+    interface HTMLNavbarItemElementEventMap {
+        "linkClicked": any;
+    }
     interface HTMLNavbarItemElement extends Components.NavbarItem, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLNavbarItemElementEventMap>(type: K, listener: (this: HTMLNavbarItemElement, ev: NavbarItemCustomEvent<HTMLNavbarItemElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLNavbarItemElementEventMap>(type: K, listener: (this: HTMLNavbarItemElement, ev: NavbarItemCustomEvent<HTMLNavbarItemElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLNavbarItemElement: {
         prototype: HTMLNavbarItemElement;
@@ -41,7 +57,9 @@ declare namespace LocalJSX {
         "transparent"?: boolean;
     }
     interface NavbarItem {
+        "active"?: boolean;
         "href"?: string;
+        "onLinkClicked"?: (event: NavbarItemCustomEvent<any>) => void;
         "text"?: string;
     }
     interface IntrinsicElements {
