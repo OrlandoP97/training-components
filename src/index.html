@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
 
     <script type="module" src="/build/training-components.esm.js"></script>
     <script nomodule src="/build/training-components.js"></script>
-  </head>
-  <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-  </body>
+</head>
+
+<body>
+    <nav-bar brand="Company">
+        <navbar-item text="Home" href="home.html"></navbar-item>
+        <navbar-item text="About" href="about.html"></navbar-item>
+        <navbar-item text="Contact" href="contact.html"></navbar-item>
+    </nav-bar>
+</body>
+
 </html>

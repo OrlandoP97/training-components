@@ -1,3 +1,17 @@
 :host {
-  display: block;
+    display: block;
+}
+
+a {
+    display: block;
+    background-color: rgb(142, 142, 243);
+    border-radius: 3px;
+    text-decoration: none;
+    color: rgb(243, 229, 229);
+    cursor: pointer;
+    padding: 10px;
+}
+
+a:hover {
+    background-color: rgb(102, 102, 255);
 }

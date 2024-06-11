@@ -6,10 +6,10 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class NavbarItem {
-  
-  
+  @Prop() text: string;
+  @Prop() href: string;
 
   render() {
-    return <div>Hello, World!</div>;
+    return <a href={this.href}>{this.text}</a>;
   }
 }
