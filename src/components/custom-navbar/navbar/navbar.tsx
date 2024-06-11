@@ -19,9 +19,9 @@ export class Navbar {
     let slotted = (this.host.shadowRoot.querySelector('slot') as HTMLSlotElement).assignedNodes().filter(node => {
       return node.nodeName !== '#text';
     });
-
+    console.log('clicked opcion: ', event.detail);
     for (let index = 0; index < slotted.length; index++) {
-      (slotted[index] as HTMLElement).shadowRoot.querySelector('a').innerText == event.detail
+      (slotted[index] as HTMLElement).shadowRoot.querySelector('a')?.innerText == event.detail
         ? (slotted[index] as HTMLElement).setAttribute('active', 'true')
         : (slotted[index] as HTMLElement).setAttribute('active', 'false');
     }

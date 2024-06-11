@@ -15,6 +15,7 @@ export namespace Components {
         "active": boolean;
         "href": string;
         "text": string;
+        "type": string;
     }
 }
 export interface NavbarItemCustomEvent<T> extends CustomEvent<T> {
@@ -61,6 +62,7 @@ declare namespace LocalJSX {
         "href"?: string;
         "onLinkClicked"?: (event: NavbarItemCustomEvent<any>) => void;
         "text"?: string;
+        "type"?: string;
     }
     interface IntrinsicElements {
         "nav-bar": NavBar;
