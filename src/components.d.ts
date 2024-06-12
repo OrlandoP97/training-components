@@ -5,7 +5,12 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { ContactFormData } from "./components/contact-form/contact-form";
+export { ContactFormData } from "./components/contact-form/contact-form";
 export namespace Components {
+    interface ContactForm {
+        "sendMessageCallback": (obj: ContactFormData) => {};
+    }
     interface NavBar {
         "brand": string;
         "fixed": boolean;
@@ -23,6 +28,12 @@ export interface NavbarItemCustomEvent<T> extends CustomEvent<T> {
     target: HTMLNavbarItemElement;
 }
 declare global {
+    interface HTMLContactFormElement extends Components.ContactForm, HTMLStencilElement {
+    }
+    var HTMLContactFormElement: {
+        prototype: HTMLContactFormElement;
+        new (): HTMLContactFormElement;
+    };
     interface HTMLNavBarElement extends Components.NavBar, HTMLStencilElement {
     }
     var HTMLNavBarElement: {
@@ -47,11 +58,15 @@ declare global {
         new (): HTMLNavbarItemElement;
     };
     interface HTMLElementTagNameMap {
+        "contact-form": HTMLContactFormElement;
         "nav-bar": HTMLNavBarElement;
         "navbar-item": HTMLNavbarItemElement;
     }
 }
 declare namespace LocalJSX {
+    interface ContactForm {
+        "sendMessageCallback"?: (obj: ContactFormData) => {};
+    }
     interface NavBar {
         "brand"?: string;
         "fixed"?: boolean;
@@ -65,6 +80,7 @@ declare namespace LocalJSX {
         "type"?: string;
     }
     interface IntrinsicElements {
+        "contact-form": ContactForm;
         "nav-bar": NavBar;
         "navbar-item": NavbarItem;
     }
@@ -73,6 +89,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "contact-form": LocalJSX.ContactForm & JSXBase.HTMLAttributes<HTMLContactFormElement>;
             "nav-bar": LocalJSX.NavBar & JSXBase.HTMLAttributes<HTMLNavBarElement>;
             "navbar-item": LocalJSX.NavbarItem & JSXBase.HTMLAttributes<HTMLNavbarItemElement>;
         }

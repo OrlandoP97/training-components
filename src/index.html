@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <nav-bar brand="Company">
         <!-- <navbar-item active="true" text="Home" href="home.html"></navbar-item>
         <navbar-item text="About" href="about.html"></navbar-item>
@@ -23,6 +24,15 @@
             <navbar-item text="Opcion2"></navbar-item>
             <navbar-item text="Opcion3"></navbar-item>
     </nav-bar>
+
+
+    <contact-form></contact-form>
 </body>
+<script>
+    let contactForm = document.querySelector('contact-form');
+    contactForm.sendMessageCallback = data => {
+        console.log('Send message executed objet = ' + JSON.stringify(data))
+    };
+</script>
 
 </html>

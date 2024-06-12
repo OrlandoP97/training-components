@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Event, EventEmitter, h, Watch, Listen } from '@stencil/core';
+import { Component, Prop, Element, h, Listen } from '@stencil/core';
 
 @Component({
   tag: 'nav-bar',
