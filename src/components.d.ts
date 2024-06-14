@@ -12,6 +12,7 @@ export namespace Components {
         "sendMessageCallback": (obj: ContactFormData) => {};
     }
     interface CustomCounter {
+        "eventState": string;
     }
     interface NavBar {
         "brand": string;
@@ -42,7 +43,7 @@ declare global {
     };
     interface HTMLCustomCounterElementEventMap {
         "eventStarted": any;
-        "eventStoped": any;
+        "eventStopped": any;
         "eventCanceled": any;
     }
     interface HTMLCustomCounterElement extends Components.CustomCounter, HTMLStencilElement {
@@ -94,9 +95,10 @@ declare namespace LocalJSX {
         "sendMessageCallback"?: (obj: ContactFormData) => {};
     }
     interface CustomCounter {
+        "eventState"?: string;
         "onEventCanceled"?: (event: CustomCounterCustomEvent<any>) => void;
         "onEventStarted"?: (event: CustomCounterCustomEvent<any>) => void;
-        "onEventStoped"?: (event: CustomCounterCustomEvent<any>) => void;
+        "onEventStopped"?: (event: CustomCounterCustomEvent<any>) => void;
     }
     interface NavBar {
         "brand"?: string;

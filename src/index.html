@@ -27,16 +27,31 @@
 
 
     <contact-form></contact-form>
-    <custom-counter eventDate="1-1-2030"></custom-counter>
 
-
+    <custom-counter></custom-counter>
 </body>
 <script>
     let contactForm = document.querySelector('contact-form');
-    
     contactForm.sendMessageCallback = data => {
         console.log('Send message executed objet = ' + JSON.stringify(data))
     };
+
+    const counterComponent = document.querySelector('custom-counter');
+    counterComponent.addEventListener('eventStarted', () => {
+        console.log('Evento Iniciado');
+        counterComponent.setAttribute('eventState', 'Iniciado');
+
+    });
+    counterComponent.addEventListener('eventPaused', () => {
+        console.log('Evento Pausado');
+        counterComponent.setAttribute('eventState', 'Pausado');
+    });
+    counterComponent.addEventListener('eventCanceled', () => {
+        console.log('Evento Cancelado');
+        //ver porq no cambia la propiedad
+        counterComponent.setAttribute('eventState', 'Cancelado');
+
+    });
 </script>
 
 </html>
