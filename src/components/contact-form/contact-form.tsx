@@ -29,7 +29,7 @@ export class ContactForm {
 
   render() {
     return (
-      <div class="contact-form">
+      <div  class="contact-form">
         <form onSubmit={e => this._handlerSubmit(e)}>
           <label class="label">Name</label>
           <input type="text" class="input" placeholder="Name" name="name"></input>

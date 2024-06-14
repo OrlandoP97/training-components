@@ -11,6 +11,8 @@ export namespace Components {
     interface ContactForm {
         "sendMessageCallback": (obj: ContactFormData) => {};
     }
+    interface CustomCounter {
+    }
     interface NavBar {
         "brand": string;
         "fixed": boolean;
@@ -23,6 +25,10 @@ export namespace Components {
         "type": string;
     }
 }
+export interface CustomCounterCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLCustomCounterElement;
+}
 export interface NavbarItemCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLNavbarItemElement;
@@ -33,6 +39,25 @@ declare global {
     var HTMLContactFormElement: {
         prototype: HTMLContactFormElement;
         new (): HTMLContactFormElement;
+    };
+    interface HTMLCustomCounterElementEventMap {
+        "eventStarted": any;
+        "eventStoped": any;
+        "eventCanceled": any;
+    }
+    interface HTMLCustomCounterElement extends Components.CustomCounter, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCustomCounterElementEventMap>(type: K, listener: (this: HTMLCustomCounterElement, ev: CustomCounterCustomEvent<HTMLCustomCounterElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCustomCounterElementEventMap>(type: K, listener: (this: HTMLCustomCounterElement, ev: CustomCounterCustomEvent<HTMLCustomCounterElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLCustomCounterElement: {
+        prototype: HTMLCustomCounterElement;
+        new (): HTMLCustomCounterElement;
     };
     interface HTMLNavBarElement extends Components.NavBar, HTMLStencilElement {
     }
@@ -59,6 +84,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "contact-form": HTMLContactFormElement;
+        "custom-counter": HTMLCustomCounterElement;
         "nav-bar": HTMLNavBarElement;
         "navbar-item": HTMLNavbarItemElement;
     }
@@ -66,6 +92,11 @@ declare global {
 declare namespace LocalJSX {
     interface ContactForm {
         "sendMessageCallback"?: (obj: ContactFormData) => {};
+    }
+    interface CustomCounter {
+        "onEventCanceled"?: (event: CustomCounterCustomEvent<any>) => void;
+        "onEventStarted"?: (event: CustomCounterCustomEvent<any>) => void;
+        "onEventStoped"?: (event: CustomCounterCustomEvent<any>) => void;
     }
     interface NavBar {
         "brand"?: string;
@@ -81,6 +112,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "contact-form": ContactForm;
+        "custom-counter": CustomCounter;
         "nav-bar": NavBar;
         "navbar-item": NavbarItem;
     }
@@ -90,6 +122,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "contact-form": LocalJSX.ContactForm & JSXBase.HTMLAttributes<HTMLContactFormElement>;
+            "custom-counter": LocalJSX.CustomCounter & JSXBase.HTMLAttributes<HTMLCustomCounterElement>;
             "nav-bar": LocalJSX.NavBar & JSXBase.HTMLAttributes<HTMLNavBarElement>;
             "navbar-item": LocalJSX.NavbarItem & JSXBase.HTMLAttributes<HTMLNavbarItemElement>;
         }
